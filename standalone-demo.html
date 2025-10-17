@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Howstore.gg - Demo Estática</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6c5ce7;
+      --primary-dark: #5941d1;
+      --accent: #00cec9;
+      --background: #0f172a;
+      --card: #111c33;
+      --text: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #0b1324 0%, #0f172a 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header nav a {
+      margin: 0 12px;
+      color: rgba(226, 232, 240, 0.75);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    header nav a:hover {
+      color: #fff;
+    }
+
+    .hero {
+      padding: 64px 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      align-items: center;
+      gap: 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 6vw, 3.8rem);
+      line-height: 1.1;
+    }
+
+    .hero-content p {
+      margin: 16px 0 24px;
+      font-size: 1.1rem;
+      color: rgba(226, 232, 240, 0.8);
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 999px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #9b5de5);
+      color: white;
+      box-shadow: 0 15px 35px rgba(108, 92, 231, 0.35);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(226, 232, 240, 0.2);
+      color: var(--text);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .glow-card {
+      background: rgba(17, 28, 51, 0.9);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glow-card::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: radial-gradient(circle at top left, rgba(108, 92, 231, 0.4), transparent 60%),
+                  radial-gradient(circle at bottom right, rgba(0, 206, 201, 0.4), transparent 60%);
+      z-index: -1;
+      filter: blur(45px);
+      opacity: 0.6;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: rgba(17, 28, 51, 0.85);
+      border-radius: 24px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .product-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    .product-prices {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .price {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .original-price {
+      font-size: 0.95rem;
+      text-decoration: line-through;
+      color: rgba(226, 232, 240, 0.5);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(108, 92, 231, 0.15);
+      color: var(--accent);
+    }
+
+    .rating {
+      color: #fbbf24;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .cart-toggle {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      background: linear-gradient(135deg, var(--accent), #0fb9b1);
+      color: #0b1324;
+      border-radius: 999px;
+      padding: 16px 22px;
+      font-weight: 700;
+      box-shadow: 0 20px 40px rgba(15, 185, 177, 0.35);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: none;
+    }
+
+    .cart-toggle span {
+      background: #0b1324;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .cart-panel {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 360px;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.98);
+      box-shadow: -12px 0 35px rgba(0, 0, 0, 0.25);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: right 0.3s ease;
+      z-index: 10;
+    }
+
+    .cart-panel.open {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-right: 8px;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .cart-item img {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .cart-item-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .quantity-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(226, 232, 240, 0.1);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .cart-summary {
+      border-top: 1px solid rgba(226, 232, 240, 0.1);
+      padding-top: 18px;
+    }
+
+    .cart-summary div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .empty-cart {
+      text-align: center;
+      color: rgba(226, 232, 240, 0.6);
+      margin-top: 48px;
+    }
+
+    footer {
+      padding: 32px;
+      text-align: center;
+      color: rgba(226, 232, 240, 0.6);
+      margin-top: 64px;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      header nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .cart-toggle {
+        right: 16px;
+        bottom: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <img src="https://cdn.jsdelivr.net/gh/tabler/tabler-icons/icons/bolt.svg" alt="Howstore" width="36" height="36" style="filter: invert(80%);">
+      <strong style="font-size:1.3rem;">Howstore.gg</strong>
+    </div>
+    <nav>
+      <a href="#home">Início</a>
+      <a href="#destaques">Destaques</a>
+      <a href="#promocoes">Promoções</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="badge">Produtos Digitais Premium</span>
+        <h1>Construa sua coleção gamer com entregas instantâneas</h1>
+        <p>
+          Explore um catálogo selecionado de jogos, gift cards e softwares.
+          Pagamentos seguros via Mercado Pago e entrega automática em segundos.
+        </p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary" onclick="scrollToSection('destaques')">Ver catálogo</button>
+          <button class="btn btn-secondary" onclick="alert('Esta é apenas uma demonstração estática!')">Como funciona</button>
+        </div>
+      </div>
+      <div class="glow-card">
+        <h3 style="margin-bottom: 18px;">Estatísticas em tempo real</h3>
+        <div style="display:grid; gap:18px;">
+          <div>
+            <span style="font-size:2.4rem; font-weight:700;">+850</span>
+            <p style="color:rgba(226,232,240,0.7);">Pedidos entregues automaticamente</p>
+          </div>
+          <div style="display:flex; gap:14px;">
+            <div style="flex:1;">
+              <p style="color:rgba(226,232,240,0.7); font-size:0.85rem;">Clientes satisfeitos</p>
+              <strong style="font-size:1.6rem;">4.9/5</strong>
+            </div>
+            <div style="flex:1;">
+              <p style="color:rgba(226,232,240,0.7); font-size:0.85rem;">Afiliados ativos</p>
+              <strong style="font-size:1.6rem;">36</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="destaques">
+      <div class="section-header">
+        <h2 class="section-title">Destaques da Semana</h2>
+        <button class="btn btn-secondary" onclick="shuffleProducts()">Ver novidades</button>
+      </div>
+      <div class="products-grid" id="products-grid"></div>
+    </section>
+
+    <section class="section glow-card" id="promocoes" style="margin-top:48px;">
+      <div class="section-header" style="margin-bottom:12px;">
+        <h2 class="section-title">Promoções Relâmpago</h2>
+        <span class="badge" id="countdown">Oferta expira em 05:00</span>
+      </div>
+      <p style="color:rgba(226,232,240,0.75); margin-bottom:16px;">
+        Combine cupons especiais com cashback para afiliados e maximize sua economia.
+      </p>
+      <div style="display:flex; gap:18px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:220px;">
+          <h3>Assassin's Creed Mirage</h3>
+          <p style="color:rgba(226,232,240,0.7); margin:10px 0 16px;">
+            Entrega imediata de chave Uplay + bônus de missão exclusiva.
+          </p>
+          <div class="product-prices">
+            <span class="price">R$ 169,90</span>
+            <span class="original-price">R$ 219,90</span>
+          </div>
+        </div>
+        <div style="flex:1; min-width:220px;">
+          <h3>Xbox Ultimate 3 Meses</h3>
+          <p style="color:rgba(226,232,240,0.7); margin:10px 0 16px;">
+            Receba o código por e-mail com ativação guiada passo a passo.
+          </p>
+          <div class="product-prices">
+            <span class="price">R$ 109,90</span>
+            <span class="original-price">R$ 149,90</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button class="cart-toggle" onclick="toggleCart()">
+    Carrinho
+    <span id="cart-count">0</span>
+  </button>
+
+  <aside class="cart-panel" id="cart-panel" aria-live="polite">
+    <div class="cart-header">
+      <h3>Seu carrinho</h3>
+      <button class="btn btn-secondary" style="padding:8px 16px;" onclick="toggleCart()">Fechar</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-summary" id="cart-summary"></div>
+    <button class="btn btn-primary" onclick="alert('Fluxo de checkout real depende da API. Esta é uma simulação!')">
+      Finalizar compra
+    </button>
+  </aside>
+
+  <footer id="contato">
+    <p>© <span id="year"></span> Howstore.gg — Demo estática para testes rápidos.</p>
+    <small>Integração completa com Mercado Pago disponível na versão full-stack.</small>
+  </footer>
+
+  <script>
+    const products = [
+      {
+        id: 'elden-ring',
+        name: 'Elden Ring Deluxe',
+        price: 199.9,
+        originalPrice: 249.9,
+        rating: 4.9,
+        image: 'https://images.unsplash.com/photo-1594904351111-7a43878e92e0?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        id: 'valorant',
+        name: 'Valorant Gift Card R$100',
+        price: 97.5,
+        originalPrice: 100,
+        rating: 4.8,
+        image: 'https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        id: 'spotify',
+        name: 'Spotify Premium 12 Meses',
+        price: 189.9,
+        originalPrice: 239.9,
+        rating: 4.7,
+        image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        id: 'fifa',
+        name: 'EA FC 24 Ultimate Edition',
+        price: 289.9,
+        originalPrice: 349.9,
+        rating: 4.6,
+        image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        id: 'minecraft',
+        name: 'Minecraft Java + Bedrock',
+        price: 129.9,
+        originalPrice: 149.9,
+        rating: 5,
+        image: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        id: 'office',
+        name: 'Microsoft Office 365 Pro',
+        price: 59.9,
+        originalPrice: 89.9,
+        rating: 4.9,
+        image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=800&q=80'
+      }
+    ];
+
+    const cart = new Map();
+
+    function formatCurrency(value) {
+      return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '';
+      products.forEach((product) => {
+        const card = document.createElement('article');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" loading="lazy" />
+          <span class="badge">Entrega imediata</span>
+          <div>
+            <h3>${product.name}</h3>
+            <p class="rating">★ ${product.rating} (1.2k avaliações)</p>
+          </div>
+          <div class="product-prices">
+            <span class="price">${formatCurrency(product.price)}</span>
+            <span class="original-price">${formatCurrency(product.originalPrice)}</span>
+          </div>
+          <button class="btn btn-primary" data-id="${product.id}">Adicionar ao carrinho</button>
+        `;
+        card.querySelector('button').addEventListener('click', () => addToCart(product.id));
+        grid.appendChild(card);
+      });
+    }
+
+    function addToCart(productId) {
+      const product = products.find((p) => p.id === productId);
+      const current = cart.get(productId) || { ...product, quantity: 0 };
+      current.quantity += 1;
+      cart.set(productId, current);
+      renderCart();
+      openCart();
+    }
+
+    function removeFromCart(productId) {
+      cart.delete(productId);
+      renderCart();
+    }
+
+    function updateQuantity(productId, delta) {
+      const current = cart.get(productId);
+      if (!current) return;
+      current.quantity = Math.max(1, current.quantity + delta);
+      cart.set(productId, current);
+      renderCart();
+    }
+
+    function renderCart() {
+      const itemsContainer = document.getElementById('cart-items');
+      const summary = document.getElementById('cart-summary');
+      const countBadge = document.getElementById('cart-count');
+
+      const items = Array.from(cart.values());
+      const itemCount = items.reduce((acc, item) => acc + item.quantity, 0);
+      const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+      const discount = subtotal * 0.05;
+      const total = subtotal - discount;
+
+      countBadge.textContent = itemCount;
+
+      itemsContainer.innerHTML = '';
+      if (items.length === 0) {
+        itemsContainer.innerHTML = '<p class="empty-cart">Seu carrinho está vazio.<br>Adicione algum produto para continuar.</p>';
+      } else {
+        items.forEach((item) => {
+          const element = document.createElement('div');
+          element.className = 'cart-item';
+          element.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" />
+            <div style="flex:1;">
+              <strong>${item.name}</strong>
+              <p style="font-size:0.9rem; color:rgba(226,232,240,0.7);">${formatCurrency(item.price)}</p>
+            </div>
+            <div class="cart-item-actions">
+              <button class="quantity-btn" aria-label="Diminuir" onclick="updateQuantity('${item.id}', -1)">−</button>
+              <span>${item.quantity}</span>
+              <button class="quantity-btn" aria-label="Aumentar" onclick="updateQuantity('${item.id}', 1)">+</button>
+            </div>
+            <button class="quantity-btn" aria-label="Remover" onclick="removeFromCart('${item.id}')">×</button>
+          `;
+          itemsContainer.appendChild(element);
+        });
+      }
+
+      summary.innerHTML = `
+        <div><span>Subtotal</span><strong>${formatCurrency(subtotal)}</strong></div>
+        <div><span>Descontos</span><strong>- ${formatCurrency(discount)}</strong></div>
+        <div style="font-size:1.1rem; font-weight:700;"><span>Total</span><strong>${formatCurrency(total)}</strong></div>
+      `;
+    }
+
+    function toggleCart() {
+      document.getElementById('cart-panel').classList.toggle('open');
+    }
+
+    function openCart() {
+      document.getElementById('cart-panel').classList.add('open');
+    }
+
+    function scrollToSection(id) {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function shuffleProducts() {
+      products.sort(() => Math.random() - 0.5);
+      renderProducts();
+    }
+
+    function startCountdown(minutes = 5) {
+      let totalSeconds = minutes * 60;
+      const label = document.getElementById('countdown');
+      const interval = setInterval(() => {
+        totalSeconds--;
+        if (totalSeconds <= 0) {
+          label.textContent = 'Oferta expirada';
+          clearInterval(interval);
+          return;
+        }
+        const m = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+        const s = String(totalSeconds % 60).padStart(2, '0');
+        label.textContent = `Oferta expira em ${m}:${s}`;
+      }, 1000);
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    renderProducts();
+    renderCart();
+    startCountdown();
+  </script>
+</body>
+</html>
