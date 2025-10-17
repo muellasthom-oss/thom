@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferramentas Digitais - Seu Arsenal Completo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Fallback background */
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px 0 rgba(167, 139, 250, 0.4);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 25px 0 rgba(167, 139, 250, 0.6);
+        }
+        .tool-card {
+            background: rgba(31, 29, 46, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(167, 139, 250, 0.5);
+        }
+        .tool-card-title {
+            color: #e5e7eb !important; /* Força a cor branca/cinza claro */
+            font-size: 0.78rem !important; /* Tamanho da fonte ajustado */
+            line-height: 1.1rem !important; /* Altura da linha ajustada */
+            font-weight: 600 !important; /* Garante o negrito */
+            margin-top: 0.75rem; /* Adiciona um espaço acima do texto */
+            text-align: center; /* Garante centralização */
+        }
+        .pricing-card {
+            background: rgba(31, 29, 46, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .pricing-card.premium {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+        }
+        .section-title {
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+        }
+        .hero-section {
+             background: linear-gradient(145deg, #4c1d95, #2e1065);
+        }
+        .tool-logo {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+            border-radius: 0.375rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <!-- Header -->
+    <header class="bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50 border-b border-purple-500/20">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-white">
+                <i class="fas fa-rocket text-purple-400 mr-2"></i>Ferramentas Digitais
+            </h1>
+            <a href="#pricing" class="cta-button bg-purple-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-purple-700">
+                Assinar Agora
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero-section py-24 md:py-40">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-6xl font-black text-white leading-tight mb-4 section-title">
+                    Acesse +120 Ferramentas Digitais com um Único Login
+                </h2>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                    Chega de pagar caro por múltiplas assinaturas. Tenha acesso ilimitado ao arsenal que os gigantes do mercado usam para crescer.
+                </p>
+                <a href="#pricing" class="cta-button inline-block bg-purple-600 text-white font-bold text-xl py-4 px-12 rounded-lg hover:bg-purple-700">
+                    LIBERAR MEU ACESSO <i class="fas fa-lock-open ml-2"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Tools Showcase Section -->
+        <section id="tools" class="py-20 bg-gradient-to-b from-gray-900 via-purple-900/40 to-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl md:text-5xl font-bold text-white section-title">Um Ecossistema Completo à sua Disposição</h3>
+                    <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Navegue por nossas categorias e descubra ferramentas para cada etapa do seu projeto.</p>
+                </div>
+                
+                <!-- Category: Inteligências Artificiais -->
+                <div class="mb-16">
+                    <h4 class="text-2xl font-bold text-purple-400 mb-6 border-l-4 border-purple-400 pl-4">Inteligências Artificiais</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=ChatGPT-4" alt="ChatGPT-4 Logo" class="tool-logo"><h5 class="tool-card-title">ChatGPT-4</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Midjourney" alt="Midjourney Logo" class="tool-logo"><h5 class="tool-card-title">Midjourney</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=ElevenLabs" alt="ElevenLabs Logo" class="tool-logo"><h5 class="tool-card-title">ElevenLabs</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Copy+Gen" alt="Copy Generator Logo" class="tool-logo"><h5 class="tool-card-title">Copy Gen</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Leonardo+AI" alt="Leonardo AI Logo" class="tool-logo"><h5 class="tool-card-title">Leonardo.AI</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Submagic" alt="Submagic Logo" class="tool-logo"><h5 class="tool-card-title">Submagic</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Code+Quick" alt="Code Quick IA Logo" class="tool-logo"><h5 class="tool-card-title">Code Quick</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=My+Images" alt="My Images AI Logo" class="tool-logo"><h5 class="tool-card-title">My Images AI</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Toons+AI" alt="Toons AI Logo" class="tool-logo"><h5 class="tool-card-title">Toons AI</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Fish+Audio" alt="Fish Audio IA Logo" class="tool-logo"><h5 class="tool-card-title">Fish Audio</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Blackbox" alt="Blackbox AI Logo" class="tool-logo"><h5 class="tool-card-title">Blackbox AI</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Grok+AI" alt="Grok AI Logo" class="tool-logo"><h5 class="tool-card-title">Grok AI</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Clicopy" alt="Clicopy Logo" class="tool-logo"><h5 class="tool-card-title">Clicopy</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Perplexity" alt="Perplexity Logo" class="tool-logo"><h5 class="tool-card-title">Perplexity</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Gamma" alt="Gamma App Logo" class="tool-logo"><h5 class="tool-card-title">Gamma App</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Hailuo" alt="Hailuo AI Logo" class="tool-logo"><h5 class="tool-card-title">Hailuo AI</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Ideogram" alt="Ideogram Logo" class="tool-logo"><h5 class="tool-card-title">Ideogram</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Hey+Gen" alt="Hey Gen Logo" class="tool-logo"><h5 class="tool-card-title">Hey Gen</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Dreamface" alt="Dreamface Logo" class="tool-logo"><h5 class="tool-card-title">Dreamface</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Runaway" alt="Runaway Logo" class="tool-logo"><h5 class="tool-card-title">Runaway</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Sora" alt="Sora Logo" class="tool-logo"><h5 class="tool-card-title">Sora</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Nat+Readers" alt="Natural Readers Logo" class="tool-logo"><h5 class="tool-card-title">Nat. Readers</h5></div>
+                    </div>
+                </div>
+
+                <!-- Category: Mineração -->
+                <div class="mb-16">
+                    <h4 class="text-2xl font-bold text-purple-400 mb-6 border-l-4 border-purple-400 pl-4">Mineração e Análise</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Semrush" alt="Semrush Logo" class="tool-logo"><h5 class="tool-card-title">Semrush</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=SimilarWeb" alt="SimilarWeb Logo" class="tool-logo"><h5 class="tool-card-title">SimilarWeb</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=BigSpy" alt="BigSpy Logo" class="tool-logo"><h5 class="tool-card-title">BigSpy</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Adsparo" alt="Adsparo Logo" class="tool-logo"><h5 class="tool-card-title">Adsparo</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=SpyGuru" alt="SpyGuru Logo" class="tool-logo"><h5 class="tool-card-title">SpyGuru</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Pipiads" alt="Pipiads Logo" class="tool-logo"><h5 class="tool-card-title">Pipiads</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Kalodata" alt="Kalodata Logo" class="tool-logo"><h5 class="tool-card-title">Kalodata</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Spyhorus" alt="Spyhorus Logo" class="tool-logo"><h5 class="tool-card-title">Spyhorus</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=SEO+Tools" alt="Ferramentas de SEO Logo" class="tool-logo"><h5 class="tool-card-title">Ferramentas SEO</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Adspro" alt="Adspro Logo" class="tool-logo"><h5 class="tool-card-title">Adspro</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Vidtao" alt="Vidtao Logo" class="tool-logo"><h5 class="tool-card-title">Vidtao</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Minea" alt="Minea Logo" class="tool-logo"><h5 class="tool-card-title">Minea</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Gurukiller" alt="Gurukiller Logo" class="tool-logo"><h5 class="tool-card-title">Gurukiller</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Produtos" alt="Produtos Secretos Logo" class="tool-logo"><h5 class="tool-card-title">Produtos Secretos</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Spyhero" alt="Spyhero Logo" class="tool-logo"><h5 class="tool-card-title">Spyhero</h5></div>
+                    </div>
+                </div>
+
+                <!-- Category: Edição -->
+                <div class="mb-16">
+                    <h4 class="text-2xl font-bold text-purple-400 mb-6 border-l-4 border-purple-400 pl-4">Edição e Design</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                         <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Canva+PRO" alt="Canva PRO Logo" class="tool-logo"><h5 class="tool-card-title">Canva PRO</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Envato" alt="Envato Elements Logo" class="tool-logo"><h5 class="tool-card-title">Envato</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Capcut+PRO" alt="Capcut PRO Logo" class="tool-logo"><h5 class="tool-card-title">Capcut PRO</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Freepik" alt="Freepik Logo" class="tool-logo"><h5 class="tool-card-title">Freepik</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Adobe+Stock" alt="Adobe Stock Logo" class="tool-logo"><h5 class="tool-card-title">Adobe Stock</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Vectorizer" alt="Vectorizer AI Logo" class="tool-logo"><h5 class="tool-card-title">Vectorizer</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Studio+Monkeys" alt="Studio Monkeys Logo" class="tool-logo"><h5 class="tool-card-title">Studio Monkeys</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Freelahub" alt="Freelahub Logo" class="tool-logo"><h5 class="tool-card-title">Freelahub</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Video+Advault" alt="Video Advault Logo" class="tool-logo"><h5 class="tool-card-title">Video Advault</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Storyblocks" alt="Storyblocks Logo" class="tool-logo"><h5 class="tool-card-title">Storyblocks</h5></div>
+                    </div>
+                </div>
+
+                <!-- Category: Desenvolvimento e Cursos -->
+                <div class="mb-16">
+                    <h4 class="text-2xl font-bold text-purple-400 mb-6 border-l-4 border-purple-400 pl-4">Desenvolvimento e Cursos</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                         <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=Curso+N8N" alt="Curso N8N Logo" class="tool-logo"><h5 class="tool-card-title">Curso N8N</h5></div>
+                        <div class="tool-card"><img src="https://placehold.co/80x80/2d3748/a0aec0?text=WaCRM" alt="WaCRM Logo" class="tool-logo"><h5 class="tool-card-title">WaCRM</h5></div>
+                    </div>
+                </div>
+
+                 <p class="text-center text-gray-400 text-lg">... e muito, muito mais! Mais de 120 ferramentas no total.</p>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-5xl font-bold text-white section-title">Um Preço, Acesso a Tudo. Simples Assim.</h3>
+                    <p class="text-gray-400 mt-4">Escolha o plano que destrava o seu potencial máximo.</p>
+                </div>
+                <div class="flex flex-col lg:flex-row justify-center items-center gap-4 lg:gap-8 max-w-4xl mx-auto">
+                    <!-- Pricing Card 1 -->
+                    <div class="pricing-card w-full p-6 md:p-8 rounded-lg">
+                        <h4 class="text-xl font-bold text-center mb-2 text-white">Plano Padrão</h4>
+                        <p class="text-center text-gray-400 mb-6">Acesso total às ferramentas</p>
+                        <p class="text-center text-4xl font-extrabold mb-1 text-white">R$49<span class="text-lg font-medium text-gray-400">,90</span></p>
+                        <p class="text-center text-gray-400 mb-6">/mês</p>
+                        <ul class="space-y-3 text-gray-300 mb-8 text-sm">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Acesso a +120 Ferramentas</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Atualizações constantes</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Suporte via comunidade</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle text-red-500 mr-3"></i>Cursos e Bônus</li>
+                        </ul>
+                        <a href="https://pay.kiwify.com.br/VI85MuN" class="w-full text-center cta-button block bg-purple-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-purple-700">
+                            Quero o Plano Padrão
+                        </a>
+                    </div>
+
+                    <!-- Pricing Card 2 (Premium) -->
+                    <div class="pricing-card premium w-full p-6 md:p-8 rounded-lg relative">
+                         <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Melhor Valor</span>
+                        <h4 class="text-xl font-bold text-center mb-2 text-white">Plano Premium</h4>
+                        <p class="text-center text-purple-300 mb-6">Ferramentas + Conhecimento</p>
+                         <p class="text-center text-4xl font-extrabold mb-1 text-white">R$69<span class="text-lg font-medium text-gray-400">,90</span></p>
+                        <p class="text-center text-gray-400 mb-6">/mês</p>
+                        <ul class="space-y-3 text-gray-300 mb-8 text-sm">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Acesso a +120 Ferramentas</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Atualizações constantes</li>
+                            <li class="flex items-center"><i class="fas fa-star text-yellow-400 mr-3"></i><strong>Curso Completo de N8N</strong></li>
+                            <li class="flex items-center"><i class="fas fa-gift text-cyan-400 mr-3"></i><strong>BÔNUS: Integração com WhatsApp</strong></li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Suporte prioritário</li>
+                        </ul>
+                        <a href="https://pay.kiwify.com.br/M3bx0RB" class="w-full text-center cta-button block bg-purple-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-purple-700">
+                           Assinar Premium Agora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-purple-500/20 text-white py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <p>&copy; 2025 Ferramentas Digitais. Todos os direitos reservados.</p>
+            <p class="text-sm mt-2">Sua plataforma definitiva para o sucesso digital.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
