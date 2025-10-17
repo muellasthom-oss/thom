@@ -1,0 +1,38 @@
+[
+  {
+    "id": "starter-pass",
+    "title": "Pacote de Pontos PSN",
+    "description": "Receba pontos digitais entregues em até 5 minutos.",
+    "price": 49.9,
+    "currency": "R$",
+    "imageUrl": "https://images.unsplash.com/photo-1634704784915-0c65d3d1c02d?auto=format&fit=crop&w=900&q=80",
+    "downloadUrl": "https://example.com/downloads/starter",
+    "category": "Jogos",
+    "tags": ["PSN", "PlayStation", "Gift Card"],
+    "available": true
+  },
+  {
+    "id": "ultimate-stream",
+    "title": "Assinatura HBO Max 12 meses",
+    "description": "Conta compartilhada com garantia e suporte dedicado.",
+    "price": 149.99,
+    "currency": "R$",
+    "imageUrl": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=900&q=80",
+    "downloadUrl": "https://example.com/downloads/hbomax",
+    "category": "Streaming",
+    "tags": ["HBO Max", "4K", "12 meses"],
+    "available": true
+  },
+  {
+    "id": "steam-points",
+    "title": "Pontos Steam 5000",
+    "description": "Entrega automática com código internacional válido.",
+    "price": 89.0,
+    "currency": "R$",
+    "imageUrl": "https://images.unsplash.com/photo-1605902711622-cfb43c44367f?auto=format&fit=crop&w=900&q=80",
+    "downloadUrl": "https://example.com/downloads/steam5000",
+    "category": "Jogos",
+    "tags": ["Steam", "Gift Card"],
+    "available": false
+  }
+]
