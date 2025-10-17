@@ -82,6 +82,26 @@ Loja online de produtos digitais inspirada na estética e experiência da howsto
 
    A loja ficará disponível em `http://localhost:5173` com proxy para a API (`http://localhost:4000`).
 
+### Quero só abrir um HTML para testar rapidamente
+
+Se você apenas precisa validar o visual sem subir toda a stack, é possível gerar os arquivos estáticos e abrir o `index.html` resultante:
+
+1. Gere o bundle do frontend:
+
+   ```bash
+   cd frontend
+   npm install
+   npm run build
+   ```
+
+2. Opcionalmente sirva o resultado com um servidor estático para garantir o correto carregamento de imports:
+
+   ```bash
+   npx serve dist
+   ```
+
+   Também funciona abrir diretamente o arquivo `frontend/dist/index.html` no navegador – essa pasta contém um HTML que referencia apenas arquivos relativos, ideal para uma conferência rápida do layout.
+
 ## Recursos principais
 
 - **Catálogo dinâmico** com destaque para produtos digitais e variações.
