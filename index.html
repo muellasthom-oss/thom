@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>THOM Digital - Produtos e Painel Admin</title>
+    <meta
+      name="description"
+      content="Catálogo de produtos digitais com checkout Mercado Pago e painel administrativo em um único arquivo HTML."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg-primary: #06050f;
+        --bg-secondary: #111024;
+        --bg-tertiary: #1c1a36;
+        --gradient: linear-gradient(135deg, #8250f2 0%, #4e5bf9 50%, #26d2fb 100%);
+        --text-primary: #f5f5ff;
+        --text-muted: #b8b6d9;
+        --accent: #8250f2;
+        --accent-soft: rgba(130, 80, 242, 0.12);
+        --danger: #ff6b81;
+        --success: #4ade80;
+        --warning: #facc15;
+        --border: rgba(130, 121, 195, 0.25);
+        --shadow: 0 24px 60px rgba(14, 10, 40, 0.45);
+        --shadow-soft: 0 12px 24px rgba(14, 10, 40, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at 20% 20%, rgba(78, 91, 249, 0.12), transparent 50%),
+          radial-gradient(circle at 80% 0%, rgba(130, 80, 242, 0.18), transparent 55%), var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font-family: inherit;
+        border: none;
+        cursor: pointer;
+      }
+
+      .app {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(16px);
+        background: rgba(6, 5, 15, 0.85);
+        border-bottom: 1px solid var(--border);
+        z-index: 10;
+      }
+
+      .topbar {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 18px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .brand {
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .brand-badge {
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(130, 80, 242, 0.18);
+        font-size: 0.72rem;
+        font-weight: 500;
+        color: var(--text-muted);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .tab-button {
+        padding: 10px 20px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--text-muted);
+        font-weight: 500;
+        transition: all 0.25s ease;
+      }
+
+      .tab-button.active {
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 16px 32px rgba(79, 92, 249, 0.4);
+      }
+
+      .tab-button:not(.active):hover {
+        border-color: rgba(130, 80, 242, 0.35);
+        color: #fff;
+      }
+
+      main {
+        flex: 1;
+        width: 100%;
+      }
+
+      .container {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 48px 24px 96px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, rgba(130, 80, 242, 0.12) 0%, rgba(38, 210, 251, 0.08) 100%);
+        border-radius: 28px;
+        padding: 32px;
+        border: 1px solid rgba(130, 121, 195, 0.25);
+        box-shadow: var(--shadow);
+        display: grid;
+        gap: 18px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.1rem, 3vw, 2.8rem);
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+
+      .hero p {
+        margin: 0;
+        color: var(--text-muted);
+        line-height: 1.6;
+        font-size: 1rem;
+      }
+
+      .hero .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .badge {
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(130, 80, 242, 0.18);
+        font-size: 0.82rem;
+        color: var(--text-primary);
+      }
+
+      .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .search-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .search-box input {
+        width: 100%;
+        padding: 14px 18px 14px 42px;
+        border-radius: 16px;
+        border: 1px solid rgba(130, 121, 195, 0.35);
+        background: rgba(12, 11, 25, 0.95);
+        color: var(--text-primary);
+        font-size: 1rem;
+        transition: border-color 0.2s ease;
+      }
+
+      .search-box input:focus {
+        outline: none;
+        border-color: rgba(130, 80, 242, 0.8);
+        box-shadow: 0 0 0 4px rgba(130, 80, 242, 0.2);
+      }
+
+      .search-box svg {
+        position: absolute;
+        left: 16px;
+        width: 18px;
+        height: 18px;
+        opacity: 0.6;
+      }
+
+      .categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .category-button {
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(130, 121, 195, 0.3);
+        background: rgba(16, 15, 30, 0.95);
+        color: var(--text-muted);
+        font-size: 0.92rem;
+        transition: all 0.2s ease;
+      }
+
+      .category-button.active {
+        background: rgba(130, 80, 242, 0.25);
+        border-color: rgba(130, 80, 242, 0.55);
+        color: var(--text-primary);
+        box-shadow: 0 12px 24px rgba(130, 80, 242, 0.25);
+      }
+
+      .category-button:hover {
+        border-color: rgba(130, 80, 242, 0.4);
+        color: #fff;
+      }
+
+      .store-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 28px;
+      }
+
+      .product-card {
+        border-radius: 24px;
+        background: rgba(15, 14, 29, 0.9);
+        border: 1px solid rgba(130, 121, 195, 0.2);
+        padding: 24px;
+        display: grid;
+        gap: 16px;
+        box-shadow: var(--shadow-soft);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 20% -10%, rgba(130, 80, 242, 0.35), transparent 55%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .product-card:hover::before {
+        opacity: 1;
+      }
+
+      .product-info h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .product-description {
+        margin: 0;
+        color: var(--text-muted);
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
+      .product-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        font-size: 0.86rem;
+        color: var(--text-muted);
+      }
+
+      .tag {
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(130, 121, 195, 0.12);
+        color: var(--text-primary);
+        font-size: 0.76rem;
+      }
+
+      .price {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .availability {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.82rem;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(74, 222, 128, 0.12);
+        color: var(--success);
+      }
+
+      .availability.unavailable {
+        background: rgba(255, 107, 129, 0.12);
+        color: var(--danger);
+      }
+
+      .product-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .buy-button {
+        flex: 1;
+        min-width: 160px;
+        padding: 12px 18px;
+        border-radius: 16px;
+        background: var(--gradient);
+        color: #fff;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .buy-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 42px rgba(79, 92, 249, 0.45);
+      }
+
+      .buy-button:disabled {
+        cursor: not-allowed;
+        filter: grayscale(0.4);
+        opacity: 0.7;
+        box-shadow: none;
+        transform: none;
+      }
+
+      .download-link {
+        padding: 12px 18px;
+        border-radius: 16px;
+        background: rgba(130, 121, 195, 0.18);
+        color: var(--text-primary);
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .view {
+        display: none;
+      }
+
+      .view.active {
+        display: block;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .empty-state {
+        padding: 60px 24px;
+        text-align: center;
+        border: 1px dashed rgba(130, 121, 195, 0.35);
+        border-radius: 20px;
+        color: var(--text-muted);
+        background: rgba(12, 11, 25, 0.6);
+      }
+
+      .toast {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        padding: 16px 22px;
+        border-radius: 16px;
+        background: rgba(12, 11, 25, 0.92);
+        border: 1px solid rgba(130, 121, 195, 0.3);
+        box-shadow: 0 16px 32px rgba(14, 10, 40, 0.4);
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        opacity: 0;
+        transform: translateY(12px);
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .toast.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Admin */
+      .admin-card {
+        border-radius: 20px;
+        border: 1px solid rgba(130, 121, 195, 0.3);
+        background: rgba(12, 11, 25, 0.9);
+        padding: 24px;
+        box-shadow: var(--shadow-soft);
+        display: grid;
+        gap: 20px;
+      }
+
+      .admin-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 24px;
+      }
+
+      .admin-card h2,
+      .admin-card h3 {
+        margin: 0;
+      }
+
+      form label {
+        display: grid;
+        gap: 6px;
+        font-size: 0.88rem;
+        color: var(--text-muted);
+      }
+
+      form input,
+      form textarea,
+      form select {
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(130, 121, 195, 0.3);
+        background: rgba(16, 15, 30, 0.9);
+        color: var(--text-primary);
+        font-size: 0.95rem;
+        transition: border-color 0.2s ease;
+      }
+
+      form textarea {
+        min-height: 110px;
+        resize: vertical;
+      }
+
+      form input:focus,
+      form textarea:focus,
+      form select:focus {
+        outline: none;
+        border-color: rgba(130, 80, 242, 0.7);
+        box-shadow: 0 0 0 4px rgba(130, 80, 242, 0.2);
+      }
+
+      .form-row {
+        display: grid;
+        gap: 16px;
+      }
+
+      .form-row.columns {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
+
+      .form-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .primary-button,
+      .secondary-button,
+      .danger-button {
+        padding: 12px 18px;
+        border-radius: 14px;
+        font-weight: 600;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .primary-button {
+        background: var(--gradient);
+        color: #fff;
+      }
+
+      .primary-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 42px rgba(79, 92, 249, 0.45);
+      }
+
+      .secondary-button {
+        background: rgba(130, 121, 195, 0.16);
+        color: var(--text-primary);
+      }
+
+      .secondary-button:hover {
+        background: rgba(130, 121, 195, 0.24);
+      }
+
+      .danger-button {
+        background: rgba(255, 107, 129, 0.16);
+        color: var(--danger);
+      }
+
+      .danger-button:hover {
+        background: rgba(255, 107, 129, 0.24);
+      }
+
+      .product-editor {
+        border-radius: 16px;
+        border: 1px solid rgba(130, 121, 195, 0.2);
+        background: rgba(16, 15, 30, 0.75);
+        overflow: hidden;
+      }
+
+      .product-editor summary {
+        padding: 18px 20px;
+        background: rgba(130, 80, 242, 0.14);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        font-weight: 600;
+      }
+
+      .product-editor summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .product-editor form {
+        padding: 20px;
+        display: grid;
+        gap: 18px;
+      }
+
+      .login-card {
+        max-width: 420px;
+        margin: 0 auto;
+        display: grid;
+        gap: 20px;
+        padding: 32px;
+        border-radius: 24px;
+        border: 1px solid rgba(130, 121, 195, 0.3);
+        background: rgba(12, 11, 25, 0.92);
+        box-shadow: var(--shadow-soft);
+        text-align: center;
+      }
+
+      .login-card h2 {
+        margin: 0;
+      }
+
+      .muted {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      footer {
+        border-top: 1px solid rgba(130, 121, 195, 0.18);
+        padding: 32px 24px;
+        text-align: center;
+        color: var(--text-muted);
+        background: rgba(6, 5, 15, 0.85);
+      }
+
+      @media (max-width: 720px) {
+        .topbar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .brand {
+          font-size: 1.2rem;
+        }
+
+        .hero {
+          padding: 24px;
+        }
+
+        .product-card {
+          padding: 20px;
+        }
+
+        .admin-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <div class="topbar">
+          <div class="brand">
+            <span>THOM Digital</span>
+            <span class="brand-badge">Catálogo & Admin</span>
+          </div>
+          <nav>
+            <button class="tab-button active" data-target="storeView">Vitrine</button>
+            <button class="tab-button" data-target="adminView">Painel admin</button>
+            <a
+              class="tab-button"
+              href="https://www.mercadopago.com.br/developers/pt/docs/checkout-pro/landing"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Docs Mercado Pago
+            </a>
+          </nav>
+        </div>
+      </header>
+      <main>
+        <div class="container">
+          <section id="storeView" class="view active">
+            <div class="hero">
+              <div class="badges">
+                <span class="badge">Checkout Mercado Pago</span>
+                <span class="badge">Entrega digital imediata</span>
+                <span class="badge">Painel de gestão incluso</span>
+              </div>
+              <h1>Vitrine moderna de produtos digitais pronta para vender.</h1>
+              <p>
+                Teste o fluxo completo em um único arquivo HTML: catálogo dinâmico, filtros, checkout com Mercado Pago e
+                painel administrativo com persistência em <em>localStorage</em>. Configure suas chaves e endpoint de
+                preferência para ativar pagamentos reais.
+              </p>
+            </div>
+
+            <div class="controls">
+              <div class="search-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input type="search" id="searchInput" placeholder="Busque por título, categoria ou tag" />
+              </div>
+
+              <div class="categories" id="categoryList"></div>
+              <div class="store-stats" id="storeStats"></div>
+            </div>
+
+            <div class="grid" id="productGrid"></div>
+          </section>
+
+          <section id="adminView" class="view">
+            <div id="adminLogin" class="login-card">
+              <h2>Acesso administrativo</h2>
+              <p class="muted">
+                Utilize a senha configurada no objeto <code>CONFIG</code> dentro deste HTML para desbloquear o painel.
+                O estado permanece entre sessões via <code>localStorage</code>.
+              </p>
+              <form id="loginForm">
+                <label>
+                  Senha de administrador
+                  <input type="password" id="passwordInput" placeholder="Digite a senha" required />
+                </label>
+                <button type="submit" class="primary-button">Entrar</button>
+              </form>
+            </div>
+
+            <div id="adminPanel" class="hidden">
+              <div class="admin-card" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <h2>Painel administrativo</h2>
+                  <p class="muted">Gerencie seu catálogo e mantenha os dados sincronizados com a vitrine.</p>
+                </div>
+                <button id="logoutButton" class="secondary-button">Sair</button>
+              </div>
+
+              <div class="admin-grid">
+                <div class="admin-card">
+                  <h3>Novo produto</h3>
+                  <p class="muted">
+                    Cadastre rapidamente um novo item. Todos os campos podem ser editados depois.
+                  </p>
+                  <form id="createForm">
+                    <div class="form-row">
+                      <label>
+                        Título
+                        <input name="title" placeholder="Ex.: Assinatura HBO Max" required />
+                      </label>
+                      <label>
+                        Descrição
+                        <textarea name="description" placeholder="Detalhes do benefício" required></textarea>
+                      </label>
+                    </div>
+                    <div class="form-row columns">
+                      <label>
+                        Preço (R$)
+                        <input name="price" type="number" min="0" step="0.01" required />
+                      </label>
+                      <label>
+                        Categoria
+                        <input name="category" placeholder="Ex.: Streaming" required />
+                      </label>
+                      <label>
+                        Tags (separadas por vírgula)
+                        <input name="tags" placeholder="4K, Premium" />
+                      </label>
+                    </div>
+                    <div class="form-row">
+                      <label>
+                        Link de download/entrega
+                        <input name="downloadUrl" placeholder="https://..." />
+                      </label>
+                      <label>
+                        URL da imagem
+                        <input name="imageUrl" placeholder="https://..." />
+                      </label>
+                      <label style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" name="available" checked /> Disponível para venda
+                      </label>
+                    </div>
+                    <div class="form-actions">
+                      <button type="submit" class="primary-button">Cadastrar produto</button>
+                      <button type="reset" class="secondary-button">Limpar campos</button>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="admin-card">
+                  <h3>Catálogo atual</h3>
+                  <div id="adminList" class="form-row"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+      <footer>
+        <p>THOM Digital &mdash; experimente, personalize e publique em qualquer hospedagem estática.</p>
+      </footer>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      const CONFIG = {
+        mercadoPagoPublicKey: "",
+        checkoutPreferenceEndpoint: "",
+        adminPassword: "admin123",
+      };
+
+      const STORAGE_KEY = "thom-digital-products";
+      const ADMIN_KEY = "thom-admin-auth";
+
+      const INITIAL_PRODUCTS = [
+        {
+          id: "starter-pass",
+          title: "Pacote de Pontos PSN",
+          description: "Receba pontos digitais entregues em até 5 minutos.",
+          price: 49.9,
+          currency: "R$",
+          imageUrl: "https://images.unsplash.com/photo-1634704784915-0c65d3d1c02d?auto=format&fit=crop&w=900&q=80",
+          downloadUrl: "https://example.com/downloads/starter",
+          category: "Jogos",
+          tags: ["PSN", "PlayStation", "Gift Card"],
+          available: true,
+        },
+        {
+          id: "ultimate-stream",
+          title: "Assinatura HBO Max 12 meses",
+          description: "Conta compartilhada com garantia e suporte dedicado.",
+          price: 149.99,
+          currency: "R$",
+          imageUrl: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=900&q=80",
+          downloadUrl: "https://example.com/downloads/hbomax",
+          category: "Streaming",
+          tags: ["HBO Max", "4K", "12 meses"],
+          available: true,
+        },
+        {
+          id: "steam-points",
+          title: "Pontos Steam 5000",
+          description: "Entrega automática com código internacional válido.",
+          price: 89.0,
+          currency: "R$",
+          imageUrl: "https://images.unsplash.com/photo-1605902711622-cfb43c44367f?auto=format&fit=crop&w=900&q=80",
+          downloadUrl: "https://example.com/downloads/steam5000",
+          category: "Jogos",
+          tags: ["Steam", "Gift Card"],
+          available: false,
+        },
+        {
+          id: "spotify-pro",
+          title: "Spotify Premium Duo 12 meses",
+          description: "Plano duo com ativação imediata e suporte para renovação automática.",
+          price: 199.9,
+          currency: "R$",
+          imageUrl: "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=80",
+          downloadUrl: "https://example.com/downloads/spotify",
+          category: "Streaming",
+          tags: ["Spotify", "Premium", "Duo"],
+          available: true,
+        },
+        {
+          id: "office-suite",
+          title: "Licença Office 365 Profissional",
+          description: "Chave vitalícia com ativação em até 24 horas e suporte remoto.",
+          price: 229.0,
+          currency: "R$",
+          imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80",
+          downloadUrl: "https://example.com/downloads/office",
+          category: "Produtividade",
+          tags: ["Office", "Microsoft", "Licença"],
+          available: true,
+        },
+      ];
+
+      const state = {
+        products: [],
+        searchTerm: "",
+        selectedCategory: "todas",
+        adminLogged: false,
+        checkoutLoading: new Set(),
+      };
+
+      let mercadoPagoClient = null;
+
+      function initialize() {
+        state.products = loadProducts();
+        state.adminLogged = localStorage.getItem(ADMIN_KEY) === "true";
+        if (CONFIG.mercadoPagoPublicKey && typeof window.MercadoPago !== "undefined") {
+          mercadoPagoClient = new MercadoPago(CONFIG.mercadoPagoPublicKey, { locale: "pt-BR" });
+        }
+        setupListeners();
+        render();
+      }
+
+      function loadProducts() {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed) && parsed.length) {
+              return parsed;
+            }
+          }
+        } catch (error) {
+          console.warn("Não foi possível carregar produtos do localStorage", error);
+        }
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_PRODUCTS));
+        return [...INITIAL_PRODUCTS];
+      }
+
+      function saveProducts() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state.products));
+      }
+
+      function render() {
+        renderTabs();
+        renderCategories();
+        renderProducts();
+        renderStats();
+        renderAdmin();
+      }
+
+      function renderTabs() {
+        document.querySelectorAll(".tab-button").forEach((button) => {
+          button.classList.toggle("active", button.dataset.target === getActiveViewId());
+        });
+        document.querySelectorAll(".view").forEach((view) => {
+          view.classList.toggle("active", view.id === getActiveViewId());
+        });
+      }
+
+      function getActiveViewId() {
+        const active = document.querySelector(".tab-button.active");
+        return active ? active.dataset.target : "storeView";
+      }
+
+      function renderCategories() {
+        const container = document.getElementById("categoryList");
+        container.innerHTML = "";
+        const categories = new Set(["todas"]);
+        state.products.forEach((product) => categories.add(product.category));
+        categories.forEach((category) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.textContent = category === "todas" ? "Todas as categorias" : category;
+          button.className = "category-button" + (state.selectedCategory === category ? " active" : "");
+          button.addEventListener("click", () => {
+            state.selectedCategory = category;
+            renderProducts();
+            renderStats();
+            document.getElementById("storeView").scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+          container.appendChild(button);
+        });
+      }
+
+      function getFilteredProducts() {
+        const term = state.searchTerm.trim().toLowerCase();
+        return state.products.filter((product) => {
+          const matchesCategory =
+            state.selectedCategory === "todas" || product.category.toLowerCase() === state.selectedCategory.toLowerCase();
+          const matchesTerm =
+            !term ||
+            product.title.toLowerCase().includes(term) ||
+            product.description.toLowerCase().includes(term) ||
+            (product.tags || []).some((tag) => tag.toLowerCase().includes(term));
+          return matchesCategory && matchesTerm;
+        });
+      }
+
+      function renderProducts() {
+        const grid = document.getElementById("productGrid");
+        grid.innerHTML = "";
+        const filtered = getFilteredProducts();
+        if (!filtered.length) {
+          grid.innerHTML = '<div class="empty-state">Nenhum produto encontrado para esta combinação.</div>';
+          return;
+        }
+        filtered.forEach((product) => {
+          const card = document.createElement("article");
+          card.className = "product-card";
+          card.innerHTML = `
+            <div class="product-info">
+              <h3>${product.title}</h3>
+              <p class="product-description">${product.description}</p>
+            </div>
+            <div class="product-meta">
+              <span>Categoria: <strong>${product.category}</strong></span>
+              ${product.tags && product.tags.length ? `<span>Tags: ${product.tags.join(", ")}</span>` : ""}
+            </div>
+            <div class="price">${formatCurrency(product.price)}</div>
+            <div class="product-meta">
+              <span class="availability ${product.available ? "" : "unavailable"}">
+                ${product.available ? "Disponível" : "Indisponível"}
+              </span>
+              ${product.downloadUrl ? `<span><strong>Entrega:</strong> link imediato</span>` : ""}
+            </div>
+            <div class="product-actions">
+              <button class="buy-button" data-id="${product.id}" ${product.available ? "" : "disabled"}>
+                <span>Comprar com Mercado Pago</span>
+              </button>
+              ${product.downloadUrl ? `<a class="download-link" href="${product.downloadUrl}" target="_blank">Prévia de entrega</a>` : ""}
+            </div>
+          `;
+          grid.appendChild(card);
+          const buyButton = card.querySelector(".buy-button");
+          buyButton.addEventListener("click", () => handleCheckout(product, buyButton));
+          updateCheckoutLoadingState(product.id, buyButton);
+        });
+      }
+
+      function renderStats() {
+        const stats = document.getElementById("storeStats");
+        const total = state.products.length;
+        const available = state.products.filter((product) => product.available).length;
+        const filtered = getFilteredProducts().length;
+        stats.innerHTML = `
+          <span><strong>${filtered}</strong> itens visíveis</span>
+          <span>${available} disponíveis agora</span>
+          <span>${total} cadastrados no total</span>
+        `;
+      }
+
+      function renderAdmin() {
+        const loginCard = document.getElementById("adminLogin");
+        const adminPanel = document.getElementById("adminPanel");
+        if (state.adminLogged) {
+          loginCard.style.display = "none";
+          adminPanel.classList.remove("hidden");
+          renderAdminList();
+        } else {
+          loginCard.style.display = "grid";
+          adminPanel.classList.add("hidden");
+        }
+      }
+
+      function renderAdminList() {
+        const list = document.getElementById("adminList");
+        list.innerHTML = "";
+        if (!state.products.length) {
+          list.innerHTML = '<div class="empty-state">Nenhum produto cadastrado até o momento.</div>';
+          return;
+        }
+        state.products.forEach((product) => {
+          const details = document.createElement("details");
+          details.className = "product-editor";
+          details.innerHTML = `
+            <summary>
+              <span>${product.title}</span>
+              <span style="font-weight: 500; color: var(--text-muted);">${formatCurrency(product.price)}</span>
+            </summary>
+            <form>
+              <div class="form-row">
+                <label>
+                  Título
+                  <input name="title" value="${escapeQuotes(product.title)}" required />
+                </label>
+                <label>
+                  Descrição
+                  <textarea name="description" required>${escapeQuotes(product.description)}</textarea>
+                </label>
+              </div>
+              <div class="form-row columns">
+                <label>
+                  Preço (R$)
+                  <input name="price" type="number" min="0" step="0.01" value="${product.price}" required />
+                </label>
+                <label>
+                  Categoria
+                  <input name="category" value="${escapeQuotes(product.category)}" required />
+                </label>
+                <label>
+                  Tags
+                  <input name="tags" value="${escapeQuotes((product.tags || []).join(", "))}" />
+                </label>
+              </div>
+              <div class="form-row">
+                <label>
+                  Link de download/entrega
+                  <input name="downloadUrl" value="${escapeQuotes(product.downloadUrl || "")}" />
+                </label>
+                <label>
+                  URL da imagem
+                  <input name="imageUrl" value="${escapeQuotes(product.imageUrl || "")}" />
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px;">
+                  <input type="checkbox" name="available" ${product.available ? "checked" : ""} /> Disponível para venda
+                </label>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="primary-button">Salvar alterações</button>
+                <button type="button" class="danger-button" data-action="delete">Excluir produto</button>
+              </div>
+            </form>
+          `;
+          const form = details.querySelector("form");
+          form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const updated = {
+              ...product,
+              title: formData.get("title").trim(),
+              description: formData.get("description").trim(),
+              price: Number(formData.get("price")) || 0,
+              category: formData.get("category").trim() || "Sem categoria",
+              tags: (formData.get("tags") || "")
+                .split(",")
+                .map((tag) => tag.trim())
+                .filter(Boolean),
+              downloadUrl: formData.get("downloadUrl").trim(),
+              imageUrl: formData.get("imageUrl").trim(),
+              available: formData.get("available") === "on",
+            };
+            updateProduct(product.id, updated);
+            showToast(`Produto "${updated.title}" atualizado.`);
+          });
+          const deleteButton = form.querySelector('[data-action="delete"]');
+          deleteButton.addEventListener("click", () => {
+            if (confirm(`Remover o produto "${product.title}"?`)) {
+              deleteProduct(product.id);
+              showToast(`Produto "${product.title}" removido.`);
+            }
+          });
+          list.appendChild(details);
+        });
+      }
+
+      function updateProduct(id, updated) {
+        state.products = state.products.map((product) => (product.id === id ? { ...product, ...updated } : product));
+        saveProducts();
+        renderProducts();
+        renderCategories();
+        renderStats();
+        renderAdminList();
+      }
+
+      function deleteProduct(id) {
+        state.products = state.products.filter((product) => product.id !== id);
+        saveProducts();
+        renderProducts();
+        renderCategories();
+        renderStats();
+        renderAdminList();
+      }
+
+      function createProduct(event) {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        const title = formData.get("title").trim();
+        const newProduct = {
+          id: `${title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}-${Date.now().toString(36)}`,
+          title,
+          description: formData.get("description").trim(),
+          price: Number(formData.get("price")) || 0,
+          category: formData.get("category").trim() || "Sem categoria",
+          tags: (formData.get("tags") || "")
+            .split(",")
+            .map((tag) => tag.trim())
+            .filter(Boolean),
+          downloadUrl: formData.get("downloadUrl").trim(),
+          imageUrl: formData.get("imageUrl").trim(),
+          available: formData.get("available") === "on",
+          currency: "R$",
+        };
+        state.products = [newProduct, ...state.products];
+        saveProducts();
+        form.reset();
+        form.querySelector('[name="available"]').checked = true;
+        renderProducts();
+        renderCategories();
+        renderStats();
+        renderAdminList();
+        showToast(`Produto "${newProduct.title}" cadastrado com sucesso.`);
+      }
+
+      async function handleCheckout(product, button) {
+        if (!CONFIG.mercadoPagoPublicKey || !CONFIG.checkoutPreferenceEndpoint) {
+          showToast("Configure a chave pública e o endpoint de preferência para abrir o checkout.");
+          return;
+        }
+        if (!mercadoPagoClient) {
+          showToast("Não foi possível inicializar o SDK do Mercado Pago.");
+          return;
+        }
+        setCheckoutLoading(product.id, true, button);
+        try {
+          const response = await fetch(CONFIG.checkoutPreferenceEndpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ productId: product.id }),
+          });
+          if (!response.ok) {
+            throw new Error(`Status ${response.status}`);
+          }
+          const data = await response.json();
+          const preferenceId = data.preferenceId || data.id || data.preference?.id;
+          if (!preferenceId) {
+            throw new Error("Resposta sem preferenceId");
+          }
+          mercadoPagoClient.checkout({
+            preference: { id: preferenceId },
+            autoOpen: true,
+          });
+        } catch (error) {
+          console.error("Erro ao criar preferência", error);
+          showToast("Erro ao criar preferência no Mercado Pago. Consulte o console para detalhes.");
+        } finally {
+          setCheckoutLoading(product.id, false, button);
+        }
+      }
+
+      function setCheckoutLoading(id, loading, button) {
+        if (loading) {
+          state.checkoutLoading.add(id);
+        } else {
+          state.checkoutLoading.delete(id);
+        }
+        updateCheckoutLoadingState(id, button);
+      }
+
+      function updateCheckoutLoadingState(id, button) {
+        const isLoading = state.checkoutLoading.has(id);
+        const targetButton = button || document.querySelector(`.buy-button[data-id="${id}"]`);
+        if (!targetButton) return;
+        targetButton.disabled = isLoading || targetButton.hasAttribute("disabled");
+        targetButton.style.opacity = isLoading ? "0.7" : "";
+        targetButton.innerHTML = isLoading
+          ? '<span>Conectando ao Mercado Pago...</span>'
+          : '<span>Comprar com Mercado Pago</span>';
+      }
+
+      function setupListeners() {
+        document.querySelectorAll(".tab-button[data-target]").forEach((button) => {
+          button.addEventListener("click", () => {
+            document.querySelectorAll(".tab-button").forEach((b) => b.classList.remove("active"));
+            button.classList.add("active");
+            renderTabs();
+          });
+        });
+
+        document.getElementById("searchInput").addEventListener("input", (event) => {
+          state.searchTerm = event.target.value;
+          renderProducts();
+          renderStats();
+        });
+
+        const loginForm = document.getElementById("loginForm");
+        loginForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const password = document.getElementById("passwordInput").value;
+          if (password === CONFIG.adminPassword) {
+            state.adminLogged = true;
+            localStorage.setItem(ADMIN_KEY, "true");
+            renderAdmin();
+            showToast("Acesso liberado ao painel administrativo.");
+          } else {
+            showToast("Senha incorreta. Tente novamente.");
+          }
+          loginForm.reset();
+        });
+
+        document.getElementById("logoutButton").addEventListener("click", () => {
+          state.adminLogged = false;
+          localStorage.removeItem(ADMIN_KEY);
+          renderAdmin();
+          showToast("Sessão encerrada.");
+        });
+
+        document.getElementById("createForm").addEventListener("submit", createProduct);
+      }
+
+      function showToast(message) {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.classList.add("visible");
+        clearTimeout(showToast.timeout);
+        showToast.timeout = setTimeout(() => {
+          toast.classList.remove("visible");
+        }, 3200);
+      }
+
+      function formatCurrency(value) {
+        return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+      }
+
+      function escapeQuotes(value) {
+        return String(value || "").replace(/"/g, '&quot;');
+      }
+
+      document.addEventListener("DOMContentLoaded", initialize);
+    </script>
+  </body>
+</html>
